@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_project_task_form_material" model="ir.ui.view">
+        <field name="name">project.task.form.material</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="before">
+                <field name="collaborator_ids" string='Colaboradores em obra' widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" context="{'project_id': project_id}"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="material_used" string="Material">
+                    <field name="material_ids">
+                        <tree string="Material Used" editable="top">
+                            <field name="product_id" string='Material'/>
+                            <field name="quantity" string='Quantidade'/>
+                        </tree>
+                    </field>
+                </page>
+                <page name="equipment_used" string="Equipamentos">
+                    <field name="equipment_ids">
+                        <tree string="Equipamentos Utilizados" editable="top">
+                            <field name="equipment_id" string="Equipamento"/>
+                            <field name="quantity" string="Quantidade"/>
+                            <field name='usage_date' string='Data de uso'/>
+                            <field name='operator_id' string='Operador'                         />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
